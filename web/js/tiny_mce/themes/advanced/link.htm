@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#advanced_dlg.link_title}</title>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="../../utils/mctabs.js"></script>
+	<script type="text/javascript" src="../../utils/form_utils.js"></script>
+	<script type="text/javascript" src="../../../../js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="../../utils/validate.js"></script>
+	<script type="text/javascript" src="js/link.js"></script>
+	<style type="text/css">
+	  #generate {
+	     border:0; margin:0; padding:0;
+       font-weight:bold;
+       width:94px; height:26px;
+       background: url(skins/default/img/buttons.png) 0 -26px;
+       cursor:pointer;
+       padding-bottom:2px;
+       float:left;
+	  }
+	</style>
+	<script type="text/javascript">
+	function switchButtons(switched){
+	   if(switched == '1'){
+         $('#insert').show();
+         $('#generate').hide();
+	   }
+	   else{
+         $('#insert').hide();
+         $('#generate').show();
+	   }
+	}
+
+	function loadInsideLayer(){
+	$('#loading').hide();
+	$('#loading').ajaxStart(function() {
+		     $(this).show();
+		     $('#result').hide();
+		     }).ajaxStop(function() {
+		      $(this).hide();
+		      $('#result').show();
+		   });
+	//$.post('http://ovap.local/backend.php/content/links', null, function(response){
+	$.post("/parasitologia/backend.php/content/links",null, function(response){
+			        $('#loading').fadeOut();
+			        $('#result').html(response);
+			        $('#result').fadeIn();
+	});
+
+	/*$.ajax({
+		  url: 'http://www.google.com.br',
+		  success: function(data) {
+		    $('.result').html(data);
+		    alert('Load was performed.');
+		  }
+		}); */
+	}
+
+	  function returnLink(){
+        mcTabs.displayTab('general_tab','general_panel');
+        $('#href').val('../../../..' + $('#path').val());
+    }
+
+	</script>
+</head>
+<body id="link" style="display: none">
+<form onsubmit="LinkDialog.update();return false;" action="#">
+	<div class="tabs">
+		<ul>
+			<li id="general_tab" class="current"><span><a href="javascript:mcTabs.displayTab('general_tab','general_panel'); switchButtons('1')" onmousedown="return false;">{#advanced_dlg.link_title}</a></span></li>
+			<li id="inside_content_tab"><span><a href="javascript:mcTabs.displayTab('inside_content_tab','inside_content_panel'); loadInsideLayer(); switchButtons('2')" onmousedown="return false;">Inside Content</a></span></li>
+		</ul>
+	</div>
+
+	<div class="panel_wrapper">
+		<div id="general_panel" class="panel current">
+
+		<table border="0" cellpadding="4" cellspacing="0">
+          <tr>
+            <td class="nowrap"><label for="href">{#advanced_dlg.link_url}</label></td>
+            <td><table border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					<td><input id="href" name="href" type="text" class="mceFocus" value="" style="width: 200px" onchange="LinkDialog.checkPrefix(this);" /></td>
+					<td id="hrefbrowsercontainer">&nbsp;</td>
+				  </tr>
+				</table></td>
+          </tr>
+		  <tr>
+			<td><label for="link_list">{#advanced_dlg.link_list}</label></td>
+			<td><select id="link_list" name="link_list" onchange="document.getElementById('href').value=this.options[this.selectedIndex].value;"></select></td>
+		  </tr>
+		<tr>
+			<td><label id="targetlistlabel" for="targetlist">{#advanced_dlg.link_target}</label></td>
+			<td><select id="target_list" name="target_list"></select></td>
+		</tr>
+          <tr>
+            <td class="nowrap"><label for="linktitle">{#advanced_dlg.link_titlefield}</label></td>
+            <td><input id="linktitle" name="linktitle" type="text" value="" style="width: 200px" /></td>
+          </tr>
+			<tr>
+				<td><label for="class_list">{#class_name}</label></td>
+				<td><select id="class_list" name="class_list"></select></td>
+			</tr>
+        </table>
+		</div>
+
+		<div id="inside_content_panel" class="panel">
+			<!--<div id="loading" style="border:1px black solid">Loading content...</div>-->
+			<div id="loading" style="text-align: center; padding: 45px"><img src="img/loading.gif" style="margin-bottom: 5px"><br>Loading content...</div>
+			<div id="result"></div>
+		</div>
+		</div>
+
+	<div class="mceActionPanel">
+	  <input type="submit" id="insert" name="insert" value="{#insert}" />
+	  <input type="button" id="generate" name="generate" value="Generate" style="display: none" onclick="returnLink(); switchButtons('1')">
+		<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+	</div>
+</form>
+</body>
+</html>
+

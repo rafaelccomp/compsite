@@ -1,0 +1,70 @@
+cms_menu:
+  class: sfPropelRouteCollection
+  options:
+    model:                CMSMenu
+    module:               cmsmenu
+    prefix_path:          /cmsmenu
+    column:               id
+    with_wildcard_routes: true
+
+cms_page:
+  class: sfPropelRouteCollection
+  options:
+    model:                CMSPage
+    module:               cmspage
+    prefix_path:          /cmspage
+    column:               id
+    with_wildcard_routes: true
+
+cms_group_content:
+  class: sfPropelRouteCollection
+  options:
+    model:                CMSGroupContent
+    module:               cmsgroupcontent
+    prefix_path:          /cmsgroupcontent
+    column:               id
+    with_wildcard_routes: true
+
+grade:
+  class: sfPropelRouteCollection
+  options:
+    model:                Grade
+    module:               grade
+    prefix_path:          /grade
+    column:               id
+    with_wildcard_routes: true
+
+content:
+  class: sfPropelRouteCollection
+  options:
+    model:                Content
+    module:               content
+    prefix_path:          /content
+    column:               id
+    with_wildcard_routes: true
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+cms_page_view:
+  cms_page_view:
+  url: cms/view
+  params: { module: cms, action: pageView }
+
+homepage:
+  url:   /
+  param: { module: sfAdminDash, action: dashboard }
+
+# default rules
+#homepage:
+#  url:   /
+#  param: { module: dashboard, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

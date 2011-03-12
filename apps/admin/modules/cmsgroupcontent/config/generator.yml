@@ -1,0 +1,29 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           CMSGroupContent
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              CMSGroupContent
+    plural:                CMSGroupContents
+    route_prefix:          cms_group_content
+    with_propel_route:     1
+    actions_base_class:    sfActions
+    css:                   none
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        sort: [title, desc]
+        title: Lista de Grupos de Conteúdo
+        batch_actions: {}
+        object_actions:
+           Conteudos: ~
+           _edit: ~
+
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

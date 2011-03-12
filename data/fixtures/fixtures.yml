@@ -1,0 +1,111 @@
+# # Populate this file with data to be loaded by your ORM's *:data-load task.
+# # You can create multiple files in this directory (i.e. 010_users.yml,
+# # 020_articles.yml, etc) which will be loaded in alphabetical order.
+# # 
+# # See documentation for your ORM's *:data-load task for more information.
+# 
+# User:
+#   fabien:
+#     username: fabien
+#     password: changeme
+#     name:     Fabien Potencier
+#     email:    fabien.potencier@symfony-project.com
+#   kris:
+#     username: Kris.Wallsmith
+#     password: changeme
+#     name:     Kris Wallsmith
+#     email:    kris.wallsmith@symfony-project.com
+
+Professor:
+  rafa:
+    name: Rafael Lima de Carvalho
+  marcelo:
+    name: Marcelo Leineker
+
+Grade:
+  doismil:
+    description: Grade de 2000
+
+Periodo:
+  primeiro:
+    description: Primeiro periodo
+    grade_id: doismil
+
+  segundo:
+    description: Segundo periodo
+    grade_id: doismil
+
+  terceiro:
+    description: Terceiro periodo
+    grade_id: doismil
+
+  quarto:
+    description: Quarto periodo
+    grade_id: doismil
+
+  quinto:
+    description: Quinto periodo
+    grade_id: doismil
+
+Local:
+  salaf5:
+    description: Sala 5 do bloco F
+
+Week:
+  segunda:
+    description: Segunda-feira
+  terca:
+    description: Terça-feira
+  quarta:
+    description: Quarta-feira
+  quinta:
+    description: Quinta-feira
+  sexta:
+    description: Sexta-feira
+  sabado:
+    description: Sábado
+
+Horario:
+  horario1:
+    inicio: 8:00
+    fim: 9:40
+    
+  horario2:
+    inicio: 10:00
+    fim: 11:40
+    
+  horario3:
+    inicio: 14:00
+    fim: 15:40
+    
+  horario4:
+    inicio: 16:00
+    fim: 17:40
+    
+  horario5:
+    inicio: 19:00
+    fim: 20:40
+    
+  horario6:
+    inicio: 21:00
+    fim: 22:40
+
+Content:
+  contentDisc:
+    content: Linguagens formais e automatos. Ementa tal bibliografia x...
+
+Disciplina:
+  formais:
+    description: Linguagens formais e automatos
+    content_id: contentDisc
+
+GradeUnit:
+  segunda1:
+    horario_id: horario1
+    disciplina_id: formais
+    professor_id: rafa
+    periodo_id: primeiro
+    local_id: salaf5
+    weekDay_id: segunda
+
+    

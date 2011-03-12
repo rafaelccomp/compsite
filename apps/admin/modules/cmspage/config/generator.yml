@@ -1,0 +1,22 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           CMSPage
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              CMSPage
+    plural:                CMSPages
+    route_prefix:          cms_page
+    with_propel_route:     1
+    actions_base_class:    sfActions
+    css:                   none
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

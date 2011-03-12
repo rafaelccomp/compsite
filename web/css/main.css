@@ -1,0 +1,19 @@
+.rounded {
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+#menu_pages li{
+  display: block;
+  width: 175px;
+  padding: 3px;
+  margin-left: 0px;
+  
+}
+.highlighted{
+  background:yellow;
+  font-weight: bold;
+  
+}
+.unhighlighted{
+  background: none;
+}

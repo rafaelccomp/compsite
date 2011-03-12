@@ -1,0 +1,58 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+# default values
+all:
+  sfImageTransformPlugin:
+    default_adapter: ImageMagick # GD or ImageMagick
+    mime_type:
+      auto_detect: true
+      library: Fileinfo #  gd_mime_type (GD), Fileinfo (PECL), MIME_Type (PEAR)
+
+  sfAssetsLibrary:
+    upload_dir:   media
+    check_type:       false              # Set to true if you want to restrict the type of assets
+    types:                               # Accepted asset types if check_type is true
+      image:   image
+      txt:     txt
+      archive: archive
+      pdf:     pdf
+      xls:     xls
+      doc:     doc
+      ppt:     ppt
+    thumbnail_dir:    thumbnail          # Where the image thumbnails are stored
+    use_ImageMagick:  true              # Set to true if you have the convert command
+    thumbnails:                          # Name and size (in pixels) of the thumbnails created at upload
+      small:                             # Displayed in the list page
+        width: 84
+        height: 84
+        shave: true                      # Cut strips to constraint the image size
+      large:                             # Displayed in the details page
+        width: 194
+        height: 152
+    search_pager_size: 20                # Number of resuts per page
+    mass_upload_size:  5                 # Number of file upload controls displayed in the mass upload form
+    
+  sf_admin_dash:
+    categories:
+      Dashboard:
+        items:
+          Home:
+            url: dashboard/index
+      CMS:
+        items:
+          Conteudo:
+            url:    content
+          Menu:
+            url:    menu/index
+    web_dir:                      /sfAdminDashPlugin
+    image_dir:                    /sfAdminDashPlugin/images/icons/
+    default_image:                config.png
+    resize_mode:                  thumbnail
+    site:                         Computing Websites control panel
+    logout:                       true
+    login_route:                  @sf_guard_signin
+    logout_route:                 @sf_guard_signout
+    include_path:                 true
+    include_jquery_no_conflict:   false 
+

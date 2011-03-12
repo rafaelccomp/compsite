@@ -1,0 +1,8 @@
+## YAML Template.
+newSuccess:
+  javascripts: [default, tiny_mce/tiny_mce]
+editSuccess:
+  javascripts: [default, tiny_mce/tiny_mce]
+
+linksSuccess:
+  has_layout: false

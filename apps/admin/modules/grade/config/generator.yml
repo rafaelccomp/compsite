@@ -1,0 +1,28 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Grade
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Grade
+    plural:                Grades
+    route_prefix:          grade
+    with_propel_route:     1
+    actions_base_class:    sfActions
+    css:                  none
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        sort: [description, desc]
+        title: Lista de Grades
+        batch_actions: {}
+        object_actions:
+           Horarios: ~
+           _edit: ~
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

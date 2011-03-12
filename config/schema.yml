@@ -1,0 +1,83 @@
+propel:
+  #General
+  Content:
+    id: ~
+    created_at: ~
+    updated_at: ~
+    content: longvarchar
+    
+  Professor:
+    id: ~
+    name: { type: varchar(256) }
+    resumo: { type: longvarchar}
+    linkPersonalPage: { type: varchar(255) }
+
+#Every professor belongs to (a) researchline(s)
+  ResearchLineProfessor:
+    professor_id: { type: integer, foreignTable: Professor, foreignReference: id, required: false, onDelete: setnull, default: null }
+    researchline_id: { type: integer, foreignTable: ResearchLine, foreignReference: id, required: false, onDelete: setnull, default: null }
+      
+  ResearchLine:
+    id: ~
+    description: { type: varchar(255) }
+    
+#Grades do curso
+  Grade:
+    id: ~
+    published: { type: boolean }
+    description: { type: varchar(255) }
+    
+  Periodo:
+    id: ~
+    description: { type: varchar(255) }
+    grade_id: { type: integer, foreignTable: Grade, foreignReference: id, required: false, onDelete: setnull, default: null }
+    
+  GradeUnit:
+    id: ~
+    horario_id: { type: integer, foreignTable: Horario, foreignReference: id, required: false, onDelete: setnull, default: null }
+    disciplina_id: { type: integer, foreignTable: Disciplina, foreignReference: id, required: false, onDelete: setnull, default: null }
+    professor_id: { type: integer, foreignTable: Professor, foreignReference: id, required: false, onDelete: setnull, default: null }
+    periodo_id: { type: integer, foreignTable: Periodo, foreignReference: id, required: false, onDelete: setnull, default: null }
+    local_id: { type: integer, foreignTable: Local, foreignReference: id, required: false, onDelete: setnull, default: null }
+    weekDay_id: { type: integer, foreignTable: Week, foreignReference: id, required: false, onDelete: setnull, default: null }
+
+  Disciplina:
+    id: ~
+    description: { type: varchar(255) }
+    ch: { type: integer, default: 60 }
+    content_id: { type: integer, foreignTable: Content, foreignReference: id, required: false, onDelete: setnull, default: null }
+      
+  Horario:
+    id: ~
+    inicio: { type: time }
+    fim: { type: time }
+
+  Week:
+    id: ~
+    description: { type: varchar(255) }
+
+  Local:
+    id: ~
+    description: { type: varchar(256) }
+
+#cmsModule
+  CMSGroupContent:
+    id: ~
+    url: { type: varchar(256) }
+    title: { type: varchar(256) }
+
+  CMSPage:
+    id: { type: integer, primaryKey: true, autoincrement: true }
+    url: { type: varchar(255), required: true, index: unique }
+    content_id: { type: integer, foreignTable: Content, foreignReference: id, required: false, onDelete: setnull, default: null }
+    CMSGroupContent_id: { type: integer, foreignTable: CMSGroupContent, foreignReference: id, required: false, onDelete: setnull, default: null }
+
+  CMSMenu:
+    id: ~
+    ordem: {type: integer }
+    CMSGroupContent_id: { type: integer, foreignTable: CMSGroupContent, foreignReference: id, required: false, onDelete: setnull, default: null }
+    parent: { type: integer, foreignTable: CMSMenu, foreignReference: id, required: false, onDelete: setnull, default: null }
+    caption: { type: varchar(255), required: true }
+    link: { type: varchar(255), required: true }
+
+    
